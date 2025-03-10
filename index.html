@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Никита | Программист</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #08fdd8;
+            --neon-pink: #ff0080;
+            --bg-color: #1d1d1d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 30px var(--neon-blue);
+            margin: 20px auto;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 20px 0;
+            text-shadow: 0 0 10px var(--neon-blue);
+            animation: text-glow 1.5s ease-in-out infinite alternate;
+        }
+
+        .info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin: 20px 0;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(8, 253, 216, 0.2);
+        }
+
+        .telegram-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--neon-blue);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .telegram-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        .code-symbols {
+            position: fixed;
+            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .symbol {
+            position: absolute;
+            color: rgba(8, 253, 216, 0.5);
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 20px;
+            animation: float 10s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(-10vw);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(10vw);
+                opacity: 0;
+            }
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px var(--neon-blue);
+            }
+            to {
+                box-shadow: 0 0 30px var(--neon-blue);
+            }
+        }
+
+        @keyframes text-glow {
+            from {
+                text-shadow: 0 0 10px var(--neon-blue);
+            }
+            to {
+                text-shadow: 0 0 20px var(--neon-blue);
+            }
+        }
+
+        .languages {
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: var(--neon-pink);
+        }
+
+        .age {
+            color: var(--neon-blue);
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .avatar {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="code-symbols" id="symbols"></div>
+    
+    <div class="container">
+        <img src="avatar.gif" alt="Аватар Никиты" class="avatar">
+        <h1>Никита</h1>
+        
+        <div class="info">
+            <p class="age">16 лет | Программист</p>
+            <div class="languages">
+                Python • HTML • C++
+            </div>
+            <a href="https://t.me/kalipsom" class="telegram-link" target="_blank">
+                📨 Написать в Telegram
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const symbols = ['{}', '()', '<>', ';#', '||', '=>', '++', '/*', '*/'];
+        const symbolsContainer = document.getElementById('symbols');
+
+        function createSymbol() {
+            const symbol = document.createElement('div');
+            symbol.className = 'symbol';
+            symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.left = Math.random() * 100 + 'vw';
+            symbol.style.animationDuration = Math.random() * 5 + 5 + 's';
+            symbol.style.animationDelay = Math.random() * 5 + 's';
+            symbolsContainer.appendChild(symbol);
+
+            setTimeout(() => {
+                symbol.remove();
+            }, 10000);
+        }
+
+        setInterval(createSymbol, 300);
+    </script>
+</body>
+</html>
